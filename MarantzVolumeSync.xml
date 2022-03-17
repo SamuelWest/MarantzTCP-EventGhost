@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<EventGhost Version="1582" Guid="{7D84DA0E-3C18-4488-B46B-4B4B012A16C8}" Time="1355294651.23">
+    <Autostart Name="Autostart" Expanded="True">
+        <Plugin Identifier="MarantzTCPPlugin" Guid="MarantzTCP" File="MarantzTCP">
+            gAIoWA0AAAAxOTIuMTY4LjEuMTAzcQBLF0sCSwx0cQEu
+        </Plugin>
+    </Autostart>
+    <Folder Name="Marantz Receiver" Expanded="True">
+        <Macro Name="Marantz TCP: Set Absolute Volume to 0" Expanded="True">
+            <Event Name="System.Volume" />
+            <Action Name="Sync receiver volume to system volume">
+                EventGhost.PythonCommand(u'eg.plugins.MarantzTCPPlugin.SetVolumeAbsolute(float(eg.event.payload))')
+            </Action>
+        </Macro>
+        <Macro Name="Marantz TCP: Mute On" Expanded="True">
+            <Event Name="System.Mute" />
+            <Action Name="Marantz TCP: Mute On">
+                MarantzTCPPlugin.SendCommandText(u'MUON')
+            </Action>
+        </Macro>
+        <Macro Name="Marantz TCP: Mute Off" Expanded="True">
+            <Event Name="System.UnMute" />
+            <Action Name="Marantz TCP: Mute On">
+                MarantzTCPPlugin.SendCommandText(u'MUOFF')
+            </Action>
+        </Macro>
+    </Folder>
+</EventGhost>
